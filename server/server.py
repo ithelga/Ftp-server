@@ -14,13 +14,13 @@ class Server:
 
     def accept_connections(self):
         ip = socket.gethostbyname(socket.gethostname())
-        port = int(input('Enter desired port --> '))
+        port = int(input('Введите порт --> '))
 
         self.s.bind((ip, port))
         self.s.listen(100)
 
-        print('Running on IP: ' + ip)
-        print('Running on port: ' + str(port))
+        print('Запущен на IP: ' + ip)
+        print('Запущен на порте: ' + str(port))
 
         way = input('Рабочая директория --> ')
         start(way)
@@ -50,7 +50,6 @@ class Server:
             file_name = (get_root().joinpath(pathlib.Path(params[0])))
             if not os.path.exists(file_name):
                 c.send("file-doesn't-exist".encode())
-
             else:
                 c.send("file-exists".encode())
                 print('Sending', file_name)
@@ -75,7 +74,7 @@ class Server:
                     if not data:
                         break
                     file.write(data)
-            print(file_name, 'successfully downloaded.')
+            print(file_name, ' успешно скачан.')
 
         else:
             ans = get_ans("Введена неверня команда. Введите help, чтобы изучить функционал")
